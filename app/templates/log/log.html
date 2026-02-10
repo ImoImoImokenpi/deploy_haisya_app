@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<header class="custom-header">
+    <h2 class="mx-auto text-start">配車.com</h2>
+</header>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <h2 class="text-center mb-2">配車結果</h2><br>
+        <h3 class="text-center mb-2">{{ group_name }}</h3><br>
+        <script src="{{ url_for('static', filename='javascript/main.js') }}">
+            var existingName = "{{ existing_name }}";
+        </script>
+        <div class="row d-flex justify-content-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                {% for driver in drivers %}
+                    <ul>
+                        <li>
+                            <h3>{{ driver.name }}:{{ driver.jenre }}:{{ driver.section }}:{{ driver.capacity }}</h3>
+                        </li>
+                    </ul>
+                {% endfor %}
+                {% for passenger in passengers %}
+                    <ul>
+                        <li>
+                            <h3>{{ passenger.name }}:{{ passenger.jenre }}:{{ passenger.section }}</h3>
+                        </li>
+                    </ul>
+                {% endfor %}
+                <br>
+                {% if remove_length == 0 and not unassigned_drivers %}
+                {% elif unassigned_drivers %}
+                    <h4>{{ unassigned_drivers | join("、 ") }}の車が余っています。</h4>
+                {% else %}
+                    <h4>あと{{ remove_length }}人分の車が必要です。<br>運転手を追加してやり直してください。</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

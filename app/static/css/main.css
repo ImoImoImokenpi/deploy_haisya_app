@@ -1,0 +1,144 @@
+.custom-header {
+    background-color: #FFA500; /* オレンジ色の背景 */
+    color: white; /* 白色の文字 */
+    padding: 1.25rem;/* 上下左右にパディングを追加 */
+    text-align: center;
+    width: 100%; /* テキストを中央に配置 */
+}
+
+header {
+    display: block;
+    unicode-bidi: isolate; 
+}
+
+.btn-primary {
+    background-color: #FFA500; /* ボタンの背景色をオレンジ色に設定 */
+    border-color: #FFA500; /* ボタンの枠線色もオレンジ色に設定 */
+}
+
+.btn-primary img {
+    margin-top: 10px; /* 画像を少し下に移動 */
+}
+
+.btn-primary:hover {
+    background-color: #FF8C00; /* マウスホバー時の背景色を濃いオレンジに設定 */
+    border-color: #FF8C00; /* マウスホバー時の枠線色も濃いオレンジに設定 */
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.card {
+    position: relative;
+}
+
+.btn-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+}
+
+.truncate-text {
+    white-space: nowrap; /* テキストを1行に制限 */
+    overflow: hidden; /* あふれたテキストを隠す */
+    text-overflow: ellipsis; /* 省略記号を表示 */
+    max-width: 150px; /* 必要に応じて幅を調整 */
+    display: block; /* ブロック要素として表示 */
+}
+
+.square-button {
+    width: 150px; /* サイズは適宜調整してください */
+    height: 150px; /* サイズは適宜調整してください */
+    position: relative;
+}
+
+.image-container {
+    margin-top: 20px;
+}
+
+/* チェックボックスのチェックマークをオレンジに */
+.form-check-input:checked {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
+}
+
+/* チェックが入った時にチェックマークもオレンジっぽく */
+.form-check-input:checked[type="checkbox"] {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
+}
+
+.form-check-input:focus {
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 0.25rem rgba(255, 165, 0, 0.25);
+}
+
+
+@media (max-width: 500px) {
+    .custom-header {
+        background-color: #FFA500; /* オレンジ色の背景 */
+        color: white; /* 白色の文字 */
+        padding: 1.25rem;/* 上下左右にパディングを追加 */
+        text-align: center;
+        width: 100%; /* テキストを中央に配置 */
+    }
+    
+    header {
+        display: block;
+        unicode-bidi: isolate; 
+    }
+    
+    .no-wrap {
+        white-space: nowrap;
+    }
+
+    .btn-primary {
+        background-color: #FFA500; /* ボタンの背景色をオレンジ色に設定 */
+        border-color: #FFA500; /* ボタンの枠線色もオレンジ色に設定 */
+    }
+    
+    .btn-primary img {
+        margin-top: 18px; /* 画像を少し下に移動 */
+        margin-right: 5px;
+    }
+    
+    .btn-primary:hover {
+        background-color: #FF8C00; /* マウスホバー時の背景色を濃いオレンジに設定 */
+        border-color: #FF8C00; /* マウスホバー時の枠線色も濃いオレンジに設定 */
+    }
+    
+    .btn-block {
+        width: 100%;
+    }
+    
+    .card {
+        position: relative;
+    }
+    
+    .btn-close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1;
+    }
+    
+    .truncate-text {
+        white-space: nowrap; /* テキストを1行に制限 */
+        overflow: hidden; /* あふれたテキストを隠す */
+        text-overflow: ellipsis; /* 省略記号を表示 */
+        max-width: 150px; /* 必要に応じて幅を調整 */
+        display: block; /* ブロック要素として表示 */
+    }
+
+    .square-button {
+        width: 130px; /* サイズは適宜調整してください */
+        height: 155px; /* サイズは適宜調整してください */
+        position: relative;
+    }
+    
+    .image-container {
+        margin-top: 13px;
+    }
+}

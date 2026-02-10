@@ -1,0 +1,22 @@
+# python cache
+__pycache__/
+*.pyc
+
+# database
+instance/
+*.db
+*.sqlite3
+
+# virtualenv
+venv/
+.env
+
+# socket
+*.sock
+
+# AWS keys
+*.pem
+
+# system
+.DS_Store
+Thumbs.db

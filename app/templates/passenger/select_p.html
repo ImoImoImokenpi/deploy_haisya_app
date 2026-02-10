@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+{% block content %}
+<header class="custom-header mb-3">
+    <h2 class="mx-auto text-start fs-4">realjamの配車</h2>
+</header>
+
+<section class="gradient-custom">
+    <div class="container py-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <h2 class="text-center fs-4 mb-3">乗客登録</h2>
+
+                <!-- 追加ボタン -->
+                <div class="mb-3 text-end">
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        + メンバーの追加
+                    </button>
+                </div>
+
+                <!-- モーダル -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content small">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">乗客</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="inputForm" action="{{ url_for('index.add_passenger') }}" method="POST">
+                                    <div class="form-group mb-2">
+                                        <label class="form-label ms-1" for="name">名前</label>
+                                        <input type="text" class="form-control form-control-sm rounded-pill" id="passenger_name" name="passenger_name" required>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="old" class="form-label ms-1">代</label>
+                                        <select id="passenger_old" class="form-control form-control-sm rounded-pill" name="passenger_old">
+                                            {% for i in range(25, 33) %}
+                                            <option value="{{ i }}">{{ i }}代</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="jenre" class="form-label ms-1">ジャンル</label>
+                                        <select id="passenger_jenre" class="form-control form-control-sm rounded-pill" name="passenger_jenre">
+                                            {% for genre in ['HIPHOP','BREAK','LOCK','POP','JAZZ','WAACK','HOUSE'] %}
+                                            <option value="{{ genre }}">{{ genre.title() }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-sm btn-primary">追加する</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>                            
+                    </div>
+                </div>
+
+                <!-- 運転手一覧 -->
+                <form id="passenger-form" action="{{ url_for('index.checked_passenger') }}" method="POST">
+                    {% for old, passengers in passengers.items() %}
+                        <h5 class="mt-4 mb-2">{{ old }}代</h5>
+                        <div class="row g-3">
+                        {% for passenger in passengers %}
+                            <div class="col-6">
+                                <div class="card p-3 small shadow-sm rounded-4 h-100">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="passengers" value="{{ passenger.id }}" id="passenger-{{ passenger.id }}">
+                                        <label class="form-check-label" for="passenger-{{ passenger.id }}">
+                                            {{ passenger.name }}<br />
+                                            {{ passenger.jenre }}
+                                        </label>
+                                    </div>
+                                    <div class="form-group mt-2">                                      
+                                        <label for="rehersal-{{ passenger.id }}" class="form-label">リハーサル</label>
+                                        <select id="rehersal-{{ passenger.id }}" name="rehersal-{{ passenger.id }}" class="form-control form-control-sm rounded-pill">
+                                            <option value="1">リハあり</option>
+                                            <option value="2">リハなし</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label for="section-{{ passenger.id }}" class="form-label">部</label>
+                                        <select id="section-{{ passenger.id }}" name="section-{{ passenger.id }}" class="form-control form-control-sm rounded-pill">
+                                            <option value="1">1部</option>
+                                            <option value="2">2部</option>
+                                            <option value="3">3部</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-end mt-2">
+                                        <button type="button" class="btn btn-sm btn-danger delete-btn btn-close" aria-label="Close" data-id="{{ passenger.id }}"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <div class="mt-4">
+                        <input type="submit" class="btn btn-primary w-100" value="配車結果へ">
+                    </div>
+                </form>
+            </div>        
+        </div>
+    </div> 
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const passengerId = this.getAttribute('data-id');
+            if (!passengerId) return alert("ドライバーIDが見つかりません");
+
+            fetch(`/delete_passenger/${passengerId}`, {
+                method: 'POST',
+            }).then(() => {
+                location.reload();
+            });
+        });
+    });
+</script>
+
+{% endblock %}

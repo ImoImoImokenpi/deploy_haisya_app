@@ -26,7 +26,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form id="inputForm" action="{{ url_for('index.add_passenger') }}" method="POST">
+                                <form id="inputForm" action="{{ url_for('passenger.add_passenger') }}" method="POST">
                                     <div class="form-group mb-2">
                                         <label class="form-label ms-1" for="name">名前</label>
                                         <input type="text" class="form-control form-control-sm rounded-pill" id="passenger_name" name="passenger_name" required>
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- 運転手一覧 -->
-                <form id="passenger-form" action="{{ url_for('index.checked_passenger') }}" method="POST">
+                <form id="passenger-form" action="{{ url_for('passenger.checked_passenger') }}" method="POST">
                     {% for old, passengers in passengers.items() %}
                         <h5 class="mt-4 mb-2">{{ old }}代</h5>
                         <div class="row g-3">

@@ -14,10 +14,10 @@
                             {% for history_name, created_date in history_names %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex flex-column">   
-                                        <a href="{{ url_for('index.history_details', history_name=history_name) }}" class="text-start truncate-text">{{ history_name }}</a>
+                                        <a href="{{ url_for('history.history_details', history_name=history_name) }}" class="text-start truncate-text">{{ history_name }}</a>
                                         <span style="color: #888;">{{ created_date.strftime('%Y/%m/%d/%H:%M') }}</span>
                                     </div>
-                                    <form action="{{ url_for('index.delete_history', history_name=history_name) }}" method="POST" style="display:inline;">
+                                    <form action="{{ url_for('history.delete_history', history_name=history_name) }}" method="POST" style="display:inline;">
                                         <button class="btn btn-danger delete-btn btn-close" aria-level="Close" data-name="{{ history_name }}"></button>
                                     </form>
                                 </li>
@@ -27,7 +27,7 @@
                     </div>
                     <br>
                     <div class="col text-end">
-                        <a href="{{ url_for('index.toppage')}}"><button class="btn btn-secondary">TOPに戻る</button></a>
+                        <a href="{{ url_for('home.toppage')}}"><button class="btn btn-secondary">TOPに戻る</button></a>
                     </div>
                 </div>
             </div>

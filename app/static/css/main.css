@@ -25,6 +25,16 @@ header {
     border-color: #FF8C00; /* マウスホバー時の枠線色も濃いオレンジに設定 */
 }
 
+.btn-warning {
+    background-color: #0f57f1;
+    border-color: #0f57f1;
+}
+
+.btn-warning:hover {
+    background-color: #052468;
+    border-color: #052468;
+}
+
 .btn-block {
     width: 100%;
 }

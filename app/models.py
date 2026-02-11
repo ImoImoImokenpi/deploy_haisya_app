@@ -61,6 +61,7 @@ class Log_History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     driver_name = db.Column(db.String(1000))
     passenger_name = db.Column(db.String(1000))
+    mode = db.Column(db.String(20))
 
 class History(db.Model):
     __tablename__ = 'history' 

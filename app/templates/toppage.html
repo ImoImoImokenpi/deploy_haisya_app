@@ -11,13 +11,13 @@
                 <div class="card-body p-5 text-center">
                     <div class="row justify-content-center d-flex">
                         <div class="col text-center col-md-6">
-                            <form action="{{ url_for('index.add_driver') }}" method="GET">
+                            <form action="{{ url_for('driver.add_driver') }}" method="GET">
                                 <button class="btn btn-primary">配車を組む</button>
                             </form>
                         </div>
                         <br>
                         <div class="col text-center">
-                            <a href="{{ url_for('index.history_list') }}" class="btn btn-primary">履歴を見る</a>
+                            <a href="{{ url_for('history.history_list') }}" class="btn btn-primary">履歴を見る</a>
                         </div>
                     </div>
                 </div>

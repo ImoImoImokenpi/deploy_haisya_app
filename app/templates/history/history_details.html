@@ -61,7 +61,7 @@
                 image.src = canvas.toDataURL();
             }
         });
-    </script>    
+    </script> 
 </head>
 <body style="background-color: white;">
     <section>
@@ -74,7 +74,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if current_user.is_authenticated %}
                         <li class="nav-item active">
-                            <a aria-current="page" href="{{ url_for('index.toppage') }}" class="nav-link">
+                            <a aria-current="page" href="{{ url_for('home.toppage') }}" class="nav-link">
                                 TOP
                             </a>
                         </li>
@@ -148,7 +148,7 @@
                             <br>
                             <br>
                             <div class="position-relative text-end">
-                                <a href="{{ url_for('index.history_list')}}"><button class="btn btn-secondary">履歴リストへ</button></a>    
+                                <a href="{{ url_for('history.history_list')}}"><button class="btn btn-secondary">履歴リストへ</button></a>    
                             </div>
                         </div>
                     </div>

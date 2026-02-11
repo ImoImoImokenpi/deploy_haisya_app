@@ -9,14 +9,17 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
                 <h2 class="text-center fs-4 mb-3">配車結果</h2>
+                
                 <div>
                     <br />
                     <h3 class="fs-4 mb-3">リア―サルあり</h3>
-                    {% for driver, passengers in matches_y.items() %}
+                    
+                    {# driver_name は Python側で「さん」付けされた文字列 #}
+                    {% for driver_name, passengers in matches_y.items() %}
                         {% if passengers %}
                         <div class="card mb-3" style="border-radius: 1rem;">
                             <div class="card-body">
-                                <h3 class="card-title">{{ driver.name }}車</h3>
+                                <h3 class="card-title">{{ driver_name }}車</h3>
                                 <ul class="list-group list-group-flash rounded">
                                     {% for passenger in passengers %}
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -28,20 +31,24 @@
                         </div>
                         {% endif %}
                     {% endfor %}
+
                     <br>
                     {% if not remove_y and not unassigned_y %}
+                        {# 表示なし #}
                     {% elif unassigned_y %}
-                        <h4>{{ unassigned_y | join(", ") }}の車が余っています</h4>
+                        <h4 class="fs-5 text-danger">{{ unassigned_y | join(", ") }}の車が余っています</h4>
                     {% else %}
-                        <h4>{{ remove_y | join(", ") }}が配車待ちです</h4>
+                        <h4 class="fs-5 text-primary">{{ remove_y | join(", ") }}が配車待ちです</h4>
                     {% endif %}
+
                     <br />
                     <h3 class="fs-4 mb-3">リア―サルなし</h3>
-                    {% for driver, passengers in matches_n.items() %}
+                    {# matches_n も matches_y と同じ構造で渡せば同様にループ可能 #}
+                    {% for driver_name, passengers in matches_n.items() %}
                         {% if passengers %}
                         <div class="card mb-3" style="border-radius: 1rem;">
                             <div class="card-body">
-                                <h3 class="card-title">{{ driver.name }}車</h3>
+                                <h3 class="card-title">{{ driver_name }}車</h3>
                                 <ul class="list-group list-group-flash rounded">
                                     {% for passenger in passengers %}
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -53,30 +60,22 @@
                         </div>
                         {% endif %}
                     {% endfor %}
-                    <br>
-                    {% if not remove_n and not unassigned_n %}
-                    {% elif unassigned_n %}
-                        <h4>{{ unassigned_n | join("、 ") }}の車が余っています</h4>
-                    {% else %}
-                        <h4>{{ remove_n | join(", ") }}が配車待ちです</h4>
-                    {% endif %}
                 </div>
-                <br />
-                <div class="col mb-3 text-end">
-                    <a href="{{ url_for('index.save') }}"><button class="btn btn-primary">結果を保存する</button></a>
+
+                <div class="col mb-3 text-end mt-4">
+                    <a href="{{ url_for('history.save') }}" class="btn btn-primary">結果を保存する</a>
                 </div>
-                <br><br>
-                <div class="row">
+                
+                <div class="row mt-5">
                     <div class="col text-start">
-                        <a href="{{ url_for('index.add_driver') }}"><button class="btn btn-secondary">もう一度組む</button></a>
+                        <a href="{{ url_for('driver.add_driver') }}" class="btn btn-secondary">もう一度組む</a>
                     </div>
                     <div class="col text-end">
-                        <a href="{{ url_for('index.toppage') }}"><button class="btn btn-secondary">TOPに戻る</button></a>
+                        <a href="{{ url_for('home.toppage') }}" class="btn btn-secondary">TOPに戻る</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

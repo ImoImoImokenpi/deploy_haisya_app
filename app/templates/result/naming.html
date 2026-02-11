@@ -8,7 +8,7 @@
         <div class="row d-flex justify-content-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <h2 class="text-center mb-2">名前をつける</h2><br>
-                    <form id="namingForm" action="{{ url_for('index.naming') }}" method="post">
+                    <form id="namingForm" action="{{ url_for('history.naming') }}" method="post">
                         <div class="mb-3">
                             <label for="history_name" class="form-label ms-1">配車名</label>
                             <input type="text" class="form-control rounded-pill" id="history_name" name="history[name]">
